@@ -1,0 +1,422 @@
+/* =========================
+   BASE
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #d2dbd8;
+    color: #263333;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 12px 5%;
+
+    background: #d0d5d3;
+    border-bottom: 1px solid #8fa9a7;
+
+    box-shadow: 0 2px 8px rgba(30, 60, 60, 0.10);
+}
+
+#.terminal-lights {
+    display: flex;
+    gap: 6px;
+}
+
+.terminal-lights span {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+    background: #4aa7a2;
+}
+
+.header-label {
+    padding-left: 10px;
+    color: #367f7b;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
+.site-nav {
+    display: flex;
+    gap: 25px;
+    margin-left: auto;
+}
+
+.site-nav a {
+    color: #385b59;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+
+    padding: 5px 0;
+
+    border-bottom: 1px solid transparent;
+}
+
+.site-nav a:hover {
+    color: #287d78;
+    border-bottom-color: #4aa7a2;
+}
+
+
+/* =========================
+   MAIN
+   ========================= */
+
+main {
+    width: min(1050px, 90%);
+    margin: 0 auto;
+}
+
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero {
+    min-height: 40vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 55px 0 40px;
+}
+
+.terminal-prompt {
+    margin: 0 0 12px;
+
+    color: #318d88;
+    font-size: 14px;
+}
+
+.hero h1 {
+    margin: 0;
+
+    color: #263636;
+
+    font-size: clamp(48px, 9vw, 92px);
+    line-height: 1;
+
+    letter-spacing: -3px;
+}
+
+.hero h2 {
+    margin: 22px 0 0;
+
+    color: #367f7b;
+
+    font-size: clamp(19px, 3vw, 28px);
+    font-weight: normal;
+}
+
+
+/* =========================
+   SECTIONS
+   ========================= */
+
+.section {
+    padding: 70px 0;
+
+    border-top: 1px solid #8fa9a7;
+
+    scroll-margin-top: 80px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 38px;
+}
+
+.section-title span {
+    color: #31918c;
+    font-weight: bold;
+}
+
+.section-title h2 {
+    margin: 0;
+
+    color: #304847;
+
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   BIO
+   ========================= */
+
+.bio-content {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 70px;
+}
+
+.bio-text p {
+    max-width: 650px;
+
+    color: #465858;
+}
+
+
+/* =========================
+   CERTIFICATIONS
+   ========================= */
+
+.certifications {
+    border-left: 2px solid #64aaa6;
+    padding-left: 25px;
+}
+
+.certifications h3 {
+    margin-top: 0;
+
+    color: #367f7b;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.cert {
+    display: flex;
+    gap: 15px;
+
+    margin: 22px 0;
+}
+
+.cert > span {
+    color: #31918c;
+    font-weight: bold;
+}
+
+.cert strong {
+    display: block;
+    color: #354747;
+}
+
+.cert small {
+    color: #647474;
+}
+
+
+/* =========================
+   PROJECTS
+   ========================= */
+
+.project {
+    margin-bottom: 25px;
+    padding: 30px;
+
+    background: #ffffff;
+    border: 1px solid #a9bfbd;
+
+    box-shadow: 4px 4px 0 rgba(54, 127, 123, 0.08);
+}
+
+.project-content h3 {
+    margin-top: 0;
+
+    color: #304646;
+    font-size: 18px;
+}
+
+.project-content p {
+    max-width: 760px;
+
+    color: #526161;
+}
+
+
+/* =========================
+   TAGS
+   ========================= */
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-top: 22px;
+}
+
+.tags span {
+    padding: 4px 9px;
+
+    border: 1px solid #7faeab;
+
+    color: #367f7b;
+    background: #e8efee;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   VIDEO
+   ========================= */
+
+.project-media {
+    margin-top: 25px;
+}
+
+.media-placeholder {
+    min-height: 220px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px dashed #6da39f;
+
+    background: #e6ebea;
+
+    color: #438985;
+    text-align: center;
+}
+
+.media-placeholder small {
+    margin-top: 8px;
+    color: #718080;
+}
+
+
+/* =========================
+   SERVER SERVICES
+   ========================= */
+
+.server-services {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    margin-top: 30px;
+
+    border-top: 1px solid #b5c8c6;
+    border-left: 1px solid #b5c8c6;
+}
+
+.service {
+    display: flex;
+    gap: 15px;
+
+    padding: 18px;
+
+    background: #fafcfb;
+
+    border-right: 1px solid #b5c8c6;
+    border-bottom: 1px solid #b5c8c6;
+}
+
+.service-number {
+    color: #42938f;
+    font-size: 12px;
+}
+
+.service strong {
+    display: block;
+
+    color: #354c4b;
+}
+
+.service small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #687777;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 30px;
+    padding: 30px 5%;
+
+    background: #d0d5d3;
+    border-top: 1px solid #8fa9a7;
+
+    color: #687777;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 750px) {
+
+    .site-header {
+        flex-wrap: wrap;
+    }
+
+    .site-nav {
+        width: 100%;
+        justify-content: space-between;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+
+    .bio-content {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .certifications {
+        border-left: none;
+        border-top: 2px solid #64aaa6;
+
+        padding: 25px 0 0;
+    }
+
+    .server-services {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
