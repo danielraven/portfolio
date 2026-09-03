@@ -40,7 +40,7 @@ body {
     box-shadow: 0 2px 8px rgba(30, 60, 60, 0.10);
 }
 
-#.terminal-lights {
+.terminal-lights {
     display: flex;
     gap: 6px;
 }
@@ -55,6 +55,7 @@ body {
 
 .header-label {
     padding-left: 10px;
+
     color: #367f7b;
     font-size: 14px;
     font-weight: bold;
@@ -70,12 +71,14 @@ body {
 .site-nav {
     display: flex;
     gap: 25px;
+
     margin-left: auto;
 }
 
 .site-nav a {
     color: #385b59;
     text-decoration: none;
+
     font-size: 14px;
     letter-spacing: 1px;
 
@@ -105,13 +108,13 @@ main {
    ========================= */
 
 .hero {
-    min-height: 40vh;
+    min-height: 30vh;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    padding: 55px 0 40px;
+    padding: 30px 0 25px;
 }
 
 .terminal-prompt {
@@ -184,6 +187,7 @@ main {
 .bio-content {
     display: grid;
     grid-template-columns: 1.6fr 1fr;
+
     gap: 70px;
 }
 
@@ -205,22 +209,21 @@ main {
 
 .certifications h3 {
     margin-top: 0;
-
     color: #367f7b;
     font-size: 14px;
     letter-spacing: 1px;
 }
 
-.cert {
-    display: flex;
-    gap: 15px;
-
-    margin: 22px 0;
-}
-
 .cert > span {
+    display: inline-block;
+    width: 60px;
     color: #31918c;
     font-weight: bold;
+    white-space: nowrap;
+}
+
+.cert {
+    margin: 22px 0;
 }
 
 .cert strong {
@@ -229,8 +232,10 @@ main {
 }
 
 .cert small {
+    display: block;
     color: #647474;
 }
+
 
 
 /* =========================
@@ -242,6 +247,7 @@ main {
     padding: 30px;
 
     background: #ffffff;
+
     border: 1px solid #a9bfbd;
 
     box-shadow: 4px 4px 0 rgba(54, 127, 123, 0.08);
@@ -251,6 +257,7 @@ main {
     margin-top: 0;
 
     color: #304646;
+
     font-size: 18px;
 }
 
@@ -306,11 +313,13 @@ main {
     background: #e6ebea;
 
     color: #438985;
+
     text-align: center;
 }
 
 .media-placeholder small {
     margin-top: 8px;
+
     color: #718080;
 }
 
@@ -343,6 +352,7 @@ main {
 
 .service-number {
     color: #42938f;
+
     font-size: 12px;
 }
 
@@ -360,6 +370,45 @@ main {
     color: #687777;
 }
 
+/* =========================
+   PHOTO GALLERY
+   ========================= */
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+
+    margin-top: 30px;
+}
+
+.gallery-image {
+    position: relative;
+    aspect-ratio: 16 / 9;
+}
+
+.gallery-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+
+
+    transition: transform 0.4s ease;
+}
+
+.gallery-image:hover {
+    z-index: 10;
+}
+
+.gallery-image:hover img {
+    transform: scale(3);
+    object-fit: contain;
+    pointer-events: none;
+}
 
 /* =========================
    FOOTER
@@ -373,9 +422,11 @@ footer {
     padding: 30px 5%;
 
     background: #d0d5d3;
+
     border-top: 1px solid #8fa9a7;
 
     color: #687777;
+
     font-size: 11px;
     letter-spacing: 1px;
 }
@@ -393,13 +444,16 @@ footer {
 
     .site-nav {
         width: 100%;
+
         justify-content: space-between;
+
         margin-left: 0;
         margin-top: 5px;
     }
 
     .bio-content {
         grid-template-columns: 1fr;
+
         gap: 35px;
     }
 
@@ -414,9 +468,16 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .photo-gallery {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.gallery-image:hover img {
+    transform: scale(1.5);
+    max-height: 60vh;
+}
     footer {
         flex-direction: column;
         gap: 5px;
     }
 }
-
