@@ -1,6 +1,29 @@
-/* =========================
-   BASE
-   ========================= */
+/* =========================================================
+   THEME VARIABLES
+   ========================================================= */
+
+:root {
+    --background: #1A1A1A;
+    --surface: #2A2A2A;
+    --text: #E6E6E0;
+    --muted: #A8A8A2;
+    --accent: #00C4D6;
+    --shadow: rgba(0, 0, 0, 0.4);
+}
+
+body.light-mode {
+    --background: #E8E8E2;
+    --surface: #F5F5F0;
+    --text: #202020;
+    --muted: #555555;
+    --accent: #008C99;
+    --shadow: rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
 
 * {
     box-sizing: border-box;
@@ -12,16 +35,19 @@ html {
 
 body {
     margin: 0;
-    background: #d2dbd8;
-    color: #263333;
+    background: var(--background);
+    color: var(--text);
     font-family: "Courier New", Courier, monospace;
     line-height: 1.6;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
 }
 
 
-/* =========================
+/* =========================================================
    HEADER
-   ========================= */
+   ========================================================= */
 
 .site-header {
     position: sticky;
@@ -34,10 +60,14 @@ body {
 
     padding: 12px 5%;
 
-    background: #d0d5d3;
-    border-bottom: 1px solid #8fa9a7;
+    background: var(--background);
+    border-bottom: 1px solid var(--accent);
 
-    box-shadow: 0 2px 8px rgba(30, 60, 60, 0.10);
+    box-shadow: 0 2px 8px var(--shadow);
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease;
 }
 
 .terminal-lights {
@@ -48,54 +78,78 @@ body {
 .terminal-lights span {
     width: 8px;
     height: 8px;
-
     border-radius: 50%;
-    background: #4aa7a2;
+    background: var(--accent);
 }
 
 .header-label {
     padding-left: 10px;
 
-    color: #367f7b;
+    color: var(--accent);
+
     font-size: 14px;
     font-weight: bold;
     letter-spacing: 2px;
     text-decoration: none;
 }
 
-
-/* =========================
-   NAVIGATION
-   ========================= */
-
 .site-nav {
     display: flex;
     gap: 25px;
-
     margin-left: auto;
 }
 
 .site-nav a {
-    color: #385b59;
-    text-decoration: none;
+    padding: 5px 0;
+
+    color: var(--text);
 
     font-size: 14px;
     letter-spacing: 1px;
-
-    padding: 5px 0;
+    text-decoration: none;
 
     border-bottom: 1px solid transparent;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .site-nav a:hover {
-    color: #287d78;
-    border-bottom-color: #4aa7a2;
+    color: var(--accent);
+    border-bottom-color: var(--accent);
 }
 
 
-/* =========================
+/* =========================================================
+   DARK / LIGHT TOGGLE
+   ========================================================= */
+
+.theme-toggle {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: var(--accent);
+    border: none;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--text);
+}
+
+/* =========================================================
    MAIN
-   ========================= */
+   ========================================================= */
 
 main {
     width: min(1050px, 90%);
@@ -103,9 +157,9 @@ main {
 }
 
 
-/* =========================
+/* =========================================================
    HERO
-   ========================= */
+   ========================================================= */
 
 .hero {
     min-height: 30vh;
@@ -120,39 +174,39 @@ main {
 .terminal-prompt {
     margin: 0 0 12px;
 
-    color: #318d88;
+    color: var(--accent);
+
     font-size: 14px;
 }
 
 .hero h1 {
     margin: 0;
 
-    color: #263636;
+    color: var(--text);
 
     font-size: clamp(48px, 9vw, 92px);
     line-height: 1;
-
     letter-spacing: -3px;
 }
 
 .hero h2 {
     margin: 22px 0 0;
 
-    color: #367f7b;
+    color: var(--accent);
 
     font-size: clamp(19px, 3vw, 28px);
     font-weight: normal;
 }
 
 
-/* =========================
+/* =========================================================
    SECTIONS
-   ========================= */
+   ========================================================= */
 
 .section {
     padding: 70px 0;
 
-    border-top: 1px solid #8fa9a7;
+    border-top: 1px solid var(--accent);
 
     scroll-margin-top: 80px;
 }
@@ -166,60 +220,65 @@ main {
 }
 
 .section-title span {
-    color: #31918c;
-    font-weight: bold;
+    display: block;
+
+    width: 9px;
+    height: 9px;
+
+    background: var(--accent);
 }
 
 .section-title h2 {
     margin: 0;
 
-    color: #304847;
+    color: var(--accent);
 
     font-size: 22px;
     letter-spacing: 2px;
 }
 
 
-/* =========================
-   BIO
-   ========================= */
+/* =========================================================
+   ABOUT / BIO
+   ========================================================= */
 
 .bio-content {
     display: grid;
     grid-template-columns: 1.6fr 1fr;
-
     gap: 70px;
 }
 
 .bio-text p {
     max-width: 650px;
+    color: var(--text);
+}
 
-    color: #465858;
+.bio-text a {
+    color: var(--accent);
+}
+
+.bio-text a:hover {
+    color: var(--text);
 }
 
 
-/* =========================
+/* =========================================================
    CERTIFICATIONS
-   ========================= */
+   ========================================================= */
 
 .certifications {
-    border-left: 2px solid #64aaa6;
     padding-left: 25px;
+
+    border-left: 2px solid var(--accent);
 }
 
 .certifications h3 {
     margin-top: 0;
-    color: #367f7b;
+
+    color: var(--accent);
+
     font-size: 14px;
     letter-spacing: 1px;
-}
-
-.cert > span {
-    display: inline-block;
-    width: 60px;
-    color: #31918c;
-    font-weight: bold;
-    white-space: nowrap;
 }
 
 .cert {
@@ -228,49 +287,51 @@ main {
 
 .cert strong {
     display: block;
-    color: #354747;
+    color: var(--text);
 }
 
 .cert small {
     display: block;
-    color: #647474;
+    color: var(--muted);
 }
 
 
-
-/* =========================
-   PROJECTS
-   ========================= */
+/* =========================================================
+   PROJECT CARDS
+   ========================================================= */
 
 .project {
     margin-bottom: 25px;
     padding: 30px;
 
-    background: #ffffff;
+    background: var(--surface);
 
-    border: 1px solid #a9bfbd;
+    border: 1px solid var(--accent);
 
-    box-shadow: 4px 4px 0 rgba(54, 127, 123, 0.08);
+    box-shadow: 4px 4px 0 rgba(0, 196, 214, 0.15);
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease;
 }
 
 .project-content h3 {
     margin-top: 0;
 
-    color: #304646;
+    color: var(--text);
 
     font-size: 18px;
 }
 
 .project-content p {
     max-width: 760px;
-
-    color: #526161;
+    color: var(--text);
 }
 
 
-/* =========================
+/* =========================================================
    TAGS
-   ========================= */
+   ========================================================= */
 
 .tags {
     display: flex;
@@ -283,18 +344,19 @@ main {
 .tags span {
     padding: 4px 9px;
 
-    border: 1px solid #7faeab;
+    background: var(--background);
 
-    color: #367f7b;
-    background: #e8efee;
+    color: var(--text);
+
+    border: 1px solid var(--accent);
 
     font-size: 11px;
 }
 
 
-/* =========================
-   VIDEO
-   ========================= */
+/* =========================================================
+   MEDIA PLACEHOLDER
+   ========================================================= */
 
 .project-media {
     margin-top: 25px;
@@ -308,25 +370,24 @@ main {
     justify-content: center;
     align-items: center;
 
-    border: 1px dashed #6da39f;
+    background: var(--background);
 
-    background: #e6ebea;
+    color: var(--accent);
 
-    color: #438985;
+    border: 1px dashed var(--accent);
 
     text-align: center;
 }
 
 .media-placeholder small {
     margin-top: 8px;
-
-    color: #718080;
+    color: var(--muted);
 }
 
 
-/* =========================
-   SERVER SERVICES
-   ========================= */
+/* =========================================================
+   SELF-HOSTING SERVICES
+   ========================================================= */
 
 .server-services {
     display: grid;
@@ -334,8 +395,8 @@ main {
 
     margin-top: 30px;
 
-    border-top: 1px solid #b5c8c6;
-    border-left: 1px solid #b5c8c6;
+    border-top: 1px solid var(--accent);
+    border-left: 1px solid var(--accent);
 }
 
 .service {
@@ -344,22 +405,20 @@ main {
 
     padding: 18px;
 
-    background: #fafcfb;
+    background: var(--background);
 
-    border-right: 1px solid #b5c8c6;
-    border-bottom: 1px solid #b5c8c6;
+    border-right: 1px solid var(--accent);
+    border-bottom: 1px solid var(--accent);
 }
 
 .service-number {
-    color: #42938f;
-
+    color: var(--accent);
     font-size: 12px;
 }
 
 .service strong {
     display: block;
-
-    color: #354c4b;
+    color: var(--text);
 }
 
 .service small {
@@ -367,12 +426,13 @@ main {
 
     margin-top: 3px;
 
-    color: #687777;
+    color: var(--muted);
 }
 
-/* =========================
+
+/* =========================================================
    PHOTO GALLERY
-   ========================= */
+   ========================================================= */
 
 .photo-gallery {
     display: grid;
@@ -395,8 +455,6 @@ main {
 
     object-fit: cover;
 
-
-
     transition: transform 0.4s ease;
 }
 
@@ -406,13 +464,16 @@ main {
 
 .gallery-image:hover img {
     transform: scale(3);
+
     object-fit: contain;
+
     pointer-events: none;
 }
 
-/* =========================
+
+/* =========================================================
    FOOTER
-   ========================= */
+   ========================================================= */
 
 footer {
     display: flex;
@@ -421,20 +482,20 @@ footer {
     margin-top: 30px;
     padding: 30px 5%;
 
-    background: #d0d5d3;
+    background: var(--background);
 
-    border-top: 1px solid #8fa9a7;
+    border-top: 1px solid var(--accent);
 
-    color: #687777;
+    color: var(--muted);
 
     font-size: 11px;
     letter-spacing: 1px;
 }
 
 
-/* =========================
-   RESPONSIVE
-   ========================= */
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 750px) {
 
@@ -451,15 +512,18 @@ footer {
         margin-top: 5px;
     }
 
+    .theme-toggle {
+        margin-left: auto;
+    }
+
     .bio-content {
         grid-template-columns: 1fr;
-
         gap: 35px;
     }
 
     .certifications {
         border-left: none;
-        border-top: 2px solid #64aaa6;
+        border-top: 2px solid var(--accent);
 
         padding: 25px 0 0;
     }
@@ -469,13 +533,14 @@ footer {
     }
 
     .photo-gallery {
-    grid-template-columns: repeat(2, 1fr);
-}
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-.gallery-image:hover img {
-    transform: scale(1.5);
-    max-height: 60vh;
-}
+    .gallery-image:hover img {
+        transform: scale(1.5);
+        max-height: 60vh;
+    }
+
     footer {
         flex-direction: column;
         gap: 5px;
