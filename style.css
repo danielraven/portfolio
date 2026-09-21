@@ -53,18 +53,13 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-
     display: flex;
     align-items: center;
     gap: 18px;
-
     padding: 12px 5%;
-
     background: var(--background);
     border-bottom: 1px solid var(--accent);
-
     box-shadow: 0 2px 8px var(--shadow);
-
     transition:
         background-color 0.25s ease,
         border-color 0.25s ease;
@@ -84,9 +79,7 @@ body {
 
 .header-label {
     padding-left: 10px;
-
     color: var(--accent);
-
     font-size: 14px;
     font-weight: bold;
     letter-spacing: 2px;
@@ -101,15 +94,11 @@ body {
 
 .site-nav a {
     padding: 5px 0;
-
     color: var(--text);
-
     font-size: 14px;
     letter-spacing: 1px;
     text-decoration: none;
-
     border-bottom: 1px solid transparent;
-
     transition:
         color 0.2s ease,
         border-color 0.2s ease;
@@ -147,6 +136,7 @@ body {
     color: var(--text);
 }
 
+
 /* =========================================================
    MAIN
    ========================================================= */
@@ -162,28 +152,22 @@ main {
    ========================================================= */
 
 .hero {
-    min-height: 30vh;
-
+    min-height: 24vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     padding: 30px 0 25px;
 }
 
 .terminal-prompt {
     margin: 0 0 12px;
-
     color: var(--accent);
-
     font-size: 14px;
 }
 
 .hero h1 {
     margin: 0;
-
     color: var(--text);
-
     font-size: clamp(48px, 9vw, 92px);
     line-height: 1;
     letter-spacing: -3px;
@@ -191,9 +175,7 @@ main {
 
 .hero h2 {
     margin: 22px 0 0;
-
     color: var(--accent);
-
     font-size: clamp(19px, 3vw, 28px);
     font-weight: normal;
 }
@@ -205,9 +187,7 @@ main {
 
 .section {
     padding: 70px 0;
-
     border-top: 1px solid var(--accent);
-
     scroll-margin-top: 80px;
 }
 
@@ -215,24 +195,19 @@ main {
     display: flex;
     align-items: center;
     gap: 12px;
-
     margin-bottom: 38px;
 }
 
 .section-title span {
     display: block;
-
     width: 9px;
     height: 9px;
-
     background: var(--accent);
 }
 
 .section-title h2 {
     margin: 0;
-
     color: var(--accent);
-
     font-size: 22px;
     letter-spacing: 2px;
 }
@@ -244,8 +219,27 @@ main {
 
 .bio-content {
     display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    gap: 70px;
+    grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1.8fr);
+    gap: 55px;
+    align-items: start;
+}
+
+.bio-image {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+}
+
+.bio-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+}
+
+.bio-text {
+    grid-column: 2;
+    grid-row: 1;
 }
 
 .bio-text p {
@@ -261,28 +255,35 @@ main {
     color: var(--text);
 }
 
+.bio-links {
+    margin-top: 28px;
+}
+
 
 /* =========================================================
    CERTIFICATIONS
    ========================================================= */
 
 .certifications {
-    padding-left: 25px;
-
-    border-left: 2px solid var(--accent);
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--accent);
 }
 
 .certifications h3 {
-    margin-top: 0;
-
+    margin: 0 0 18px;
     color: var(--accent);
-
     font-size: 14px;
     letter-spacing: 1px;
 }
 
 .cert {
-    margin: 22px 0;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 40px;
+    min-width: 180px;
 }
 
 .cert strong {
@@ -303,13 +304,9 @@ main {
 .project {
     margin-bottom: 25px;
     padding: 30px;
-
     background: var(--surface);
-
     border: 1px solid var(--accent);
-
     box-shadow: 4px 4px 0 rgba(0, 196, 214, 0.15);
-
     transition:
         background-color 0.25s ease,
         border-color 0.25s ease;
@@ -317,9 +314,7 @@ main {
 
 .project-content h3 {
     margin-top: 0;
-
     color: var(--text);
-
     font-size: 18px;
 }
 
@@ -337,19 +332,14 @@ main {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-
     margin-top: 22px;
 }
 
 .tags span {
     padding: 4px 9px;
-
     background: var(--background);
-
     color: var(--text);
-
     border: 1px solid var(--accent);
-
     font-size: 11px;
 }
 
@@ -364,18 +354,13 @@ main {
 
 .media-placeholder {
     min-height: 220px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     background: var(--background);
-
     color: var(--accent);
-
     border: 1px dashed var(--accent);
-
     text-align: center;
 }
 
@@ -392,9 +377,7 @@ main {
 .server-services {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-
     margin-top: 30px;
-
     border-top: 1px solid var(--accent);
     border-left: 1px solid var(--accent);
 }
@@ -402,11 +385,8 @@ main {
 .service {
     display: flex;
     gap: 15px;
-
     padding: 18px;
-
     background: var(--background);
-
     border-right: 1px solid var(--accent);
     border-bottom: 1px solid var(--accent);
 }
@@ -423,9 +403,7 @@ main {
 
 .service small {
     display: block;
-
     margin-top: 3px;
-
     color: var(--muted);
 }
 
@@ -438,7 +416,6 @@ main {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
-
     margin-top: 30px;
 }
 
@@ -449,27 +426,15 @@ main {
 
 .gallery-image img {
     display: block;
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
-
     transition: transform 0.4s ease;
 }
 
-.gallery-image:hover {
-    z-index: 10;
-}
-
 .gallery-image:hover img {
-    transform: scale(3);
-
-    object-fit: contain;
-
-    pointer-events: none;
+    transform: none;
 }
-
 
 /* =========================================================
    FOOTER
@@ -478,16 +443,11 @@ main {
 footer {
     display: flex;
     justify-content: space-between;
-
     margin-top: 30px;
     padding: 30px 5%;
-
     background: var(--background);
-
     border-top: 1px solid var(--accent);
-
     color: var(--muted);
-
     font-size: 11px;
     letter-spacing: 1px;
 }
@@ -505,9 +465,7 @@ footer {
 
     .site-nav {
         width: 100%;
-
         justify-content: space-between;
-
         margin-left: 0;
         margin-top: 5px;
     }
@@ -521,11 +479,32 @@ footer {
         gap: 35px;
     }
 
-    .certifications {
-        border-left: none;
-        border-top: 2px solid var(--accent);
+    .bio-image {
+        grid-column: 1;
+        grid-row: 1;
+        width: 100%;
+    }
 
-        padding: 25px 0 0;
+    .bio-image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .bio-text {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .certifications {
+        grid-column: 1;
+        grid-row: 3;
+        margin-top: 0;
+    }
+
+    .cert {
+        display: block;
+        margin: 0 0 20px;
     }
 
     .server-services {
@@ -545,4 +524,17 @@ footer {
         flex-direction: column;
         gap: 5px;
     }
+
+}
+
+.gallery-zoom {
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    object-fit: contain;
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0;
+    z-index: 1000;
+    pointer-events: none;
+   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
