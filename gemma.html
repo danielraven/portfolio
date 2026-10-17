@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chat with a locally hosted AI assistant running on Raspberry Pi.">
+    <title>Gemma AI | Dan Raven</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <style>
+        .chat-section {
+            padding: 45px 0 70px;
+            border-top: 1px solid var(--accent);
+        }
+
+        .chat-intro {
+            margin-bottom: 28px;
+        }
+
+        .chat-intro h1 {
+            color: var(--accent);
+            font-size: clamp(28px, 5vw, 42px);
+            margin-bottom: 8px;
+        }
+
+        .chat-intro p {
+            opacity: 0.8;
+        }
+
+        .chat-panel {
+            border: 1px solid var(--accent);
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .chat-status {
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--accent);
+            font-size: 13px;
+            color: var(--accent);
+        }
+
+        .chat-messages {
+            min-height: 280px;
+            max-height: 55vh;
+            overflow-y: auto;
+            padding: 18px;
+        }
+
+        .chat-message {
+            margin-bottom: 18px;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .chat-message strong {
+            display: block;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .chat-form {
+            display: flex;
+            gap: 10px;
+            padding: 14px;
+            border-top: 1px solid var(--accent);
+        }
+
+        .chat-form textarea {
+            flex: 1;
+            min-width: 0;
+            resize: vertical;
+            min-height: 48px;
+            max-height: 160px;
+            padding: 12px;
+            background: var(--background);
+            color: var(--text);
+            border: 1px solid var(--accent);
+            font: inherit;
+        }
+
+        .chat-form button {
+            padding: 10px 18px;
+            background: var(--accent);
+            color: var(--background);
+            border: 1px solid var(--accent);
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .chat-form button:disabled,
+        .chat-form textarea:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .chat-note {
+            margin-top: 12px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: var(--accent);
+        }
+
+        @media (max-width: 520px) {
+            .chat-form {
+                flex-direction: column;
+            }
+
+            .chat-form button {
+                min-height: 44px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="terminal-lights"><span></span><span></span><span></span></div>
+        <a href="index.html" class="header-label">DAN_RAVEN</a>
+        <nav class="site-nav">
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#self-hosting">Self-Hosting</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button"
+                aria-label="Switch to light mode">☼</button>
+    </header>
+
+    <main>
+        <section class="chat-section">
+            <div class="chat-intro">
+                <p class="terminal-prompt">dan@piserver:~$ ./gemma</p>
+                <h1>Gemma AI</h1>
+                <p>A small language model running on my Raspberry Pi home lab.</p>
+            </div>
+
+            <div class="chat-panel">
+                <div class="chat-status" id="chat-status" role="status">
+                    READY — Enter a message to begin.
+                </div>
+
+                <div class="chat-messages" id="chat-messages"
+                     aria-live="polite">
+                    <div class="chat-message">
+                        <strong>Gemma</strong>
+                        Hello. What would you like to discuss?
+                    </div>
+                </div>
+
+                <form class="chat-form" id="chat-form">
+                    <textarea id="chat-input" name="message"
+                        maxlength="2000" required
+                        placeholder="Type your message..."
+                        aria-label="Your message"></textarea>
+                    <button id="send-button" type="submit">Send</button>
+                </form>
+            </div>
+
+            <p class="chat-note">
+                Responses may take some time. Please do not submit sensitive
+                or personal information. Usage limits apply.
+            </p>
+
+            <a class="back-link" href="index.html">&larr; Back to portfolio</a>
+        </section>
+    </main>
+
+    <script>
+        const form = document.getElementById("chat-form");
+        const input = document.getElementById("chat-input");
+        const sendButton = document.getElementById("send-button");
+        const messages = document.getElementById("chat-messages");
+        const status = document.getElementById("chat-status");
+
+        function addMessage(speaker, text) {
+            const message = document.createElement("div");
+            message.className = "chat-message";
+
+            const label = document.createElement("strong");
+            label.textContent = speaker;
+
+            const content = document.createElement("div");
+            content.textContent = text;
+
+            message.append(label, content);
+            messages.appendChild(message);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const message = input.value.trim();
+            if (!message || sendButton.disabled) return;
+
+            addMessage("You", message);
+            input.value = "";
+            input.disabled = true;
+            sendButton.disabled = true;
+            status.textContent = "THINKING — Please wait...";
+
+            try {
+                const response = await fetch("/api/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || "The request failed.");
+                }
+
+                addMessage("Gemma", data.reply);
+                status.textContent = "READY";
+            } catch (error) {
+                addMessage("System", error.message ||
+                    "Could not reach the chatbot. Please try again.");
+                status.textContent = "ERROR — Request unsuccessful.";
+            } finally {
+                input.disabled = false;
+                sendButton.disabled = false;
+                input.focus();
+            }
+        });
+    </script>
+</body>
+</html>
